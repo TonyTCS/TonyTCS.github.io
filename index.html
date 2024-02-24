@@ -5,25 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tony Tran - Personal Website</title>
     <style>
-        /* General styling */
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #e5d3b3;
-            color: #000;
-            transition: background-color 0.3s, color 0.3s;
+            color: #fff;
         }
 
-        /* Dark mode */
         body.dark-mode {
             background-color: #333;
             color: #fff;
         }
 
-        /* Header styling */
         header {
-            background-color: #d2b48c;
+            background-color: #27508a;
             padding: 20px;
             text-align: center;
             margin-bottom: 20px;
@@ -35,9 +31,8 @@
             margin: 0;
         }
 
-        /* Navigation bar styling */
         nav {
-            background-color: #deb887;
+            background-color: #27508a;
             text-align: right;
             padding: 20px 20px 10px;
             width: 100%;
@@ -55,6 +50,47 @@
         nav a:hover {
             color: #ccc;
         }
+
+        .dark-mode-toggle {
+            background-color: transparent;
+            border: 2px solid #fff;
+            border-radius: 20px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 10px 20px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .dark-mode-toggle:hover {
+            background-color: #fff;
+            color: #27508a;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(45deg, #1d2951, #27508a);
+        }
+
+        img {
+            display: block;
+            max-width: 200px;
+            height: auto;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            font-size: 24px;
+        }
+        p {
+            font-size: 18px;
+        }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
@@ -64,11 +100,13 @@
             <h1>Welcome to my Website</h1>
         </div>
     </header>
+
     <nav>
         <a href="#">Home</a>
         <a href="https://github.com/TonyTCS">GitHub</a>
-        <button id="dark-mode-toggle">Dark Mode</button>
+        <button class="dark-mode-toggle" onclick="toggleDarkMode()">Dark Mode</button>
     </nav>
+
     <div class="container">
         <h2>About Me</h2>
         <p>
@@ -78,16 +116,20 @@
         </p>
         <img src="https://raw.githubusercontent.com/TonyTCS/TonyTCS.github.io/main/Raven1.jpg" alt="Picture of my cat Raven">
     </div>
+
     <script>
-        const darkModeToggle = document.getElementById('dark-mode-toggle');
-        const isDarkMode = localStorage.getItem('darkMode') === 'true';
-        if (isDarkMode) {
-            document.body.classList.add('dark-mode');
+        function toggleDarkMode() {
+            const body = document.body;
+            body.classList.toggle("dark-mode");
+
+            const isDarkMode = body.classList.contains("dark-mode");
+            localStorage.setItem("darkMode", isDarkMode);
         }
-        darkModeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
-        });
+
+        const isDarkMode = localStorage.getItem("darkMode") === "true";
+        if (isDarkMode) {
+            document.body.classList.add("dark-mode");
+        }
     </script>
 </body>
 </html>
