@@ -7,95 +7,68 @@
     <style>
         /* General styling */
         body {
-            font-family: 'Roboto', sans-serif; /* Roboto font */
+            font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #333; /* Dark mode sort of gray */
-            color: #fff; /* White text color */
+            background-color: #e5d3b3;
+            color: #000;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Dark mode */
+        body.dark-mode {
+            background-color: #333;
+            color: #fff;
         }
 
         /* Header styling */
         header {
-            background-color: #27508a; /* Darker shade of blue */
+            background-color: #d2b48c;
             padding: 20px;
             text-align: center;
-            margin-bottom: 20px; /* Add margin bottom to separate from nav */
-            border-radius: 20px; /* Rounded corners */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
+            margin-bottom: 20px;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
         header h1, header p {
-            font-size: 28px; /* Set font size */
-            margin: 0; /* Remove default margin */
+            font-size: 28px;
+            margin: 0;
         }
 
         /* Navigation bar styling */
         nav {
-            background-color: #2b2b2b; /* Darker shade of gray */
-            text-align: right; /* Align to the right */
-            padding: 20px 20px 10px; /* Add padding */
-            width: 100%; /* Stretch to full width */
-            box-sizing: border-box; /* Include padding in width calculation */
-            margin-bottom: 20px; /* Add margin bottom */
-            border-radius: 20px; /* Rounded corners */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
+            background-color: #deb887;
+            text-align: right;
+            padding: 20px 20px 10px;
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
         nav a {
             text-decoration: none;
-            color: #fff; /* White text color */
-            margin: 0 10px; /* Add margin between links */
-            font-size: 20px; /* Adjust the font size */
+            color: #fff;
+            margin: 0 10px;
+            font-size: 20px;
         }
         nav a:hover {
-            color: #ccc; /* Light gray color on hover */
-        }
-
-        /* Main content container styling */
-        .container {
-            max-width: 800px; /* Set maximum width */
-            margin: 0 auto; /* Center container horizontally */
-            padding: 20px; /* Add padding */
-            text-align: center; /* Center text */
-            border-radius: 20px; /* Rounded corners */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
-            background: linear-gradient(45deg, #1d2951, #27508a); /* Gradient background */
-        }
-
-        /* Image styling */
-        img {
-            display: block;
-            max-width: 200px; /* Adjust the width as needed */
-            height: auto;
-            margin: 20px auto; /* Center image */
-            border-radius: 10px; /* Rounded corners */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
-        }
-
-        /* Heading and paragraph styling */
-        h2 {
-            font-size: 24px; /* Set font size */
-        }
-        p {
-            font-size: 18px; /* Set font size */
+            color: #ccc;
         }
     </style>
-    <!-- Link to Roboto font -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Header section -->
     <header>
         <div>
             <h1>Welcome to my Website</h1>
         </div>
     </header>
-
-    <!-- Navigation bar section -->
     <nav>
         <a href="#">Home</a>
         <a href="https://github.com/TonyTCS">GitHub</a>
+        <button id="dark-mode-toggle">Dark Mode</button>
     </nav>
-
-    <!-- Main content section -->
     <div class="container">
         <h2>About Me</h2>
         <p>
@@ -105,5 +78,16 @@
         </p>
         <img src="https://raw.githubusercontent.com/TonyTCS/TonyTCS.github.io/main/Raven1.jpg" alt="Picture of my cat Raven">
     </div>
+    <script>
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const isDarkMode = localStorage.getItem('darkMode') === 'true';
+        if (isDarkMode) {
+            document.body.classList.add('dark-mode');
+        }
+        darkModeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+        });
+    </script>
 </body>
 </html>
